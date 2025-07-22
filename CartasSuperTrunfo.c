@@ -38,8 +38,9 @@ int main() {
     int pontosturisticos2;      // um numero inteiro para armazenar a quantidade de pontos turisticos da cidade
     
    // Mensagem inicial para o usuário para explicar as regras de inserção de dados no que tange ao código da carta
-   printf("Cadastre as duas cartas, inserindo os dados e pressionando ENTER\n")
-   printf("Note que no código da carta a letra deverá ser a mesma informada para o campo Estado\n\n");
+   printf("Cadastre as duas cartas, inserindo os dados e pressionando ENTER\n");
+   printf("Note que no código da carta a letra deverá ser a mesma informada para o campo Estado\n");
+   printf("*(Usar ponto no lugar de vírgula na separação decimal)\n\n")
 
     // Entrada de dados da Carta 1
     printf("=== Cadastro da Carta 1 ===\n");
