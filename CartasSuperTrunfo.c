@@ -18,6 +18,9 @@ int main() {
     // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
     // Exiba os valores inseridos para cada atributo da cidade, um por linha.
 
+    // * Optei por usar uma referência para o PIB que é Milhões de Reais, para eviar a digitação de numero muito grande
+    //   sendo assim PIB inferiores a um Milhão deverá ser informado como 0.xx (zero milhões e x mil reais)  
+
     // Declaração das variaveis para o cadastro da primeira carta
     char estado1;               // 01 caracter para armazenar o Estado
     char codigo1[4];            // 04 caracteres para armazenar o código da carta 
@@ -40,7 +43,7 @@ int main() {
    // Mensagem inicial para o usuário para explicar as regras de inserção de dados no que tange ao código da carta
    printf("Cadastre as duas cartas, inserindo os dados e pressionando ENTER\n");
    printf("Note que no código da carta a letra deverá ser a mesma informada para o campo Estado\n");
-   printf("*(Usar ponto no lugar de vírgula na separação decimal)\n\n")
+   printf("*(Usar ponto no lugar de vírgula na separação decimal)\n\n");
 
     // Entrada de dados da Carta 1
     printf("=== Cadastro da Carta 1 ===\n");
@@ -59,7 +62,7 @@ int main() {
     printf("Digite a Área (km²): ");
     scanf("%f", &area1);
 
-    printf("Digite o PIB (em bilhões de reais): ");
+    printf("Digite o PIB (em milhões de reais): ");
     scanf("%f", &pib1);
 
     printf("Digite o Número de Pontos Turísticos: ");
@@ -72,7 +75,7 @@ int main() {
     printf("Nome da Cidade: %s\n", nomecidade1);
     printf("População: %d\n", populacao1);
     printf("Área: %f km²\n", area1);
-    printf("PIB: %f bilhões de reais\n", pib1);
+    printf("PIB: %f milhões de reais\n", pib1);
     printf("Número de Pontos Turísticos: %d\n", pontosturisticos1);   
 
 
@@ -93,7 +96,7 @@ int main() {
     printf("Digite a Área (km²): ");
     scanf("%f", &area2);
 
-    printf("Digite o PIB (em bilhões de reais): ");
+    printf("Digite o PIB (em milhões de reais): ");
     scanf("%f", &pib2);
 
     printf("Digite o Número de Pontos Turísticos: ");
@@ -106,7 +109,7 @@ int main() {
     printf("Nome da Cidade: %s\n", nomecidade2);
     printf("População: %d\n", populacao2);
     printf("Área: %f km²\n", area2);
-    printf("PIB: %f bilhões de reais\n", pib2);
+    printf("PIB: %f milhões de reais\n", pib2);
     printf("Número de Pontos Turísticos: %d\n", pontosturisticos2);   
  
     printf("\n\n==== fim da execução ====\n");
