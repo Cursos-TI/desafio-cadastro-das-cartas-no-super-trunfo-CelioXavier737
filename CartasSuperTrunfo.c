@@ -13,6 +13,15 @@
              - inseridas as linhas da calculo para as novas variaveis (vide observações nas referidas linhas)
 */
 
+
+/*
+  24/07/2025 - (Célio) - foram realizadas as alterações e complementos referente ao modulo MESTRE
+             - criada a variavel SUPERPODER baseado na soma de todas os valores numericos menos a Densidade demografica 
+             - apliquei a ideia de abater o valor da densidade na seguinte metodologia:
+               SUPERPODER = soma de tudo * (1 / densidade * 100) de forma a gerar um numero onde a densidade quanto mais alta for
+               mais alto será o desconto no superpoder da cidade.
+
+*/
 int main() {
     // Sugestão: Defina variáveis separadas para cada atributo da cidade.
     // Exemplos de atributos: código da cidade, nome, população, área, PIB, número de pontos turísticos.
@@ -41,6 +50,8 @@ int main() {
     float densidadedemografica1; // um numero float (ponto flutuante) para armazenar a qtd de habitantes por KM2
     float rendapercapta1;         // um numero float (ponto flutuante) pára armazenar o valor per capta 
     
+    // inserido no nivel MESTRE
+    float superpoder1;         // um float (ponto flutuante) para armazenar a soma (super poder) dos atributos numericos da cidade
 
     // Declaração das variaveis para o cadastro da segunda carta
     char estado2;                // 01 caracter para armazenar o Estado
@@ -52,9 +63,23 @@ int main() {
     int pontosturisticos2;       // um numero inteiro para armazenar a quantidade de pontos turisticos da cidade
 
     // inserido no nivel AVENTUREIRO
-    float densidadedemografica2; // um numero float (ponto flutuante) para armazenar a qtd de habitantes por KM2
+    float densidadedemografica2;  // um numero float (ponto flutuante) para armazenar a qtd de habitantes por KM2
     float rendapercapta2;         // um numero float (ponto flutuante) pára armazenar o valor per capta 
     
+    // inserido no nivel MESTRE
+    float superpoder2;          // um numero float (ponto flutuante) para armazenar a soma (super poder) dos atributos numericos da cidade
+    
+    // inserido no nivel MESTRE
+    int resultadopopulacao;              // numero inteiro para armazenar o resultado da comparação de população
+    int resultadoarea;                   // numero inteiro para armazenar o resultado da comparação de area em km
+    int resultadopib;                    // numero inteiro para armazenar o resultado da comparação de pib
+    int resultadopontosturisticos;       // numero inteiro para armazenar o resultado da comparação de pontos turisticos
+    int resultadodensidade;              // numero inteiro para armazenar o resultado da comparação de densidade demografica
+    int resultadopercapta;               // numero inteiro para armazenar o resultado da comparação de renda per capta
+    int resultadosuperpoder;             // numero inteiro para armazenar o resultado da comparação de super poder
+
+
+
     // Mensagem inicial para o usuário para explicar as regras de inserção de dados no que tange ao código da carta
     printf("Cadastre as duas cartas, inserindo os dados e pressionando ENTER\n");
     printf("Note que no código da carta a letra deverá ser a mesma informada para o campo Estado\n");
@@ -69,7 +94,7 @@ int main() {
     scanf(" %s", codigo1);
 
     printf("Digite o Nome da Cidade: ");
-    scanf(" %s", nomecidade1); 
+    scanf(" %[^\n]", nomecidade1); 
 
     printf("Digite a População (nº de hab): ");
     scanf("%d", &populacao1);
@@ -89,7 +114,9 @@ int main() {
     // assim o valor apresentado no per capta corresponderá a Reais
     rendapercapta1 = (float) ((pib1 / populacao1) * 1000000);  
   
-  
+    // inserido no nivel MESTRE
+    superpoder1 = (populacao1 + area1 + (pib1 * 1000000) + pontosturisticos1 + rendapercapta1) * (1.0f / (densidadedemografica1 * 100));
+    
      // Exibição dos dados da Carta 1
     printf("\n\n Dados Informados\n=== Carta 1 ===\n");
     printf("Estado: %c\n", estado1);
@@ -104,6 +131,8 @@ int main() {
     printf("Densidade Demográfica: %.2f hab/km²\n", densidadedemografica1);   
     printf("Renda Per Capta: %.2f Reais\n", rendapercapta1);   
 
+    // inserido no nivel MESTRE
+    printf("Super Poder: %.2f pontos\n\n", superpoder1);   
 
     // Entrada de dados da Carta 2
     printf("\n\n=== Cadastro da Carta 2 ===\n");           // Inicio com dois \n para separar os print de tela e evitar que muito "embolado"
@@ -114,7 +143,7 @@ int main() {
     scanf(" %s", codigo2);
 
     printf("Digite o Nome da Cidade: ");
-    scanf(" %s", nomecidade2); 
+    scanf(" %[^\n]", nomecidade2); 
 
     printf("Digite a População (nº de hab): ");
     scanf("%d", &populacao2);
@@ -134,8 +163,10 @@ int main() {
     // assim o valor apresentado no per capta corresponderá a Reais
     rendapercapta2 = (float) ((pib2 / populacao2) * 1000000);  
   
-  
-     // Exibição dos dados da Carta 2
+    // inserido no nivel MESTRE
+    superpoder2 = (populacao2 + area2 + (pib2 * 1000000) + pontosturisticos2 + rendapercapta2) * (1.0f / (densidadedemografica2 * 100));
+    
+    // Exibição dos dados da Carta 2
     printf("\n\n Dados Informados\n=== Carta 2 ===\n");
     printf("Estado: %c\n", estado2);
     printf("Código: %s\n", codigo2);
@@ -148,8 +179,32 @@ int main() {
     // inserido no nivel AVENTUREIRO
     printf("Densidade Demográfica: %.2f hab/km²\n", densidadedemografica2);   
     printf("Renda Per Capta: %.2f Reais\n", rendapercapta2);   
- 
-    printf("\n\n==== fim da execução ====\n");
+
+    // inserido no nivel MESTRE
+    printf("Super Poder: %.2f pontos\n", superpoder2);   
+   
+
+    // inserido no nivel MESTRE
+
+    resultadopopulacao = populacao1 > populacao2;
+    resultadoarea = area1 > area2;
+    resultadopib = pib1 > pib2;
+    resultadopontosturisticos = pontosturisticos1 > pontosturisticos2;
+    resultadopercapta = rendapercapta1 > rendapercapta2;
+    resultadodensidade = densidadedemografica2 > densidadedemografica1;
+    resultadosuperpoder = superpoder1 > superpoder2;
+
+    printf("\n\n Comparação  ==== (1) -  Carta 1 Vence  - (0) - Carta 2 Vence\n\n");
+    printf("População: %d Vence\n", resultadopopulacao);
+    printf("Área: %d Vence\n", resultadoarea);
+    printf("PIB: %d Vence\n", resultadopib);
+    printf("Número de Pontos Turísticos: %d Vence\n", resultadopontosturisticos);   
+    printf("Densidade Demográfica: %d Vence\n", resultadodensidade);   
+    printf("Renda Per Capta: %d Vence\n", resultadopercapta);   
+    printf("Super Poder: %d Vence\n\n", resultadosuperpoder);   
     
+    printf("\n\n==== fim da execução ====\n");
+
+   
     return 0;
 }
