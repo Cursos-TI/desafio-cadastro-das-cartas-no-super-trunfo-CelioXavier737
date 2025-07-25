@@ -41,7 +41,7 @@ int main() {
     char estado1;               // 01 caracter para armazenar o Estado
     char codigo1[4];            // 04 caracteres para armazenar o código da carta 
     char nomecidade1[50];       // 50 caracteres para armazenar o nome da cidade
-    int populacao1;             // numero inteiro para armazenar o numero de habitantes
+    unsigned long int populacao1;             // numero inteiro para armazenar o numero de habitantes
     float area1;                // um numero float (ponto flutuante) para armazenar a área em km2
     float pib1;                 // um numero float (ponto flutuante) para armazenar o PIB 
     int pontosturisticos1;      // um numero inteiro para armazenar a quantidade de pontos turisticos da cidade
@@ -57,7 +57,7 @@ int main() {
     char estado2;                // 01 caracter para armazenar o Estado
     char codigo2[4];             // 04 caracteres para armazenar o código da carta 
     char nomecidade2[50];        // 50 caracteres para armazenar o nome da cidade
-    int populacao2;              // numero inteiro para armazenar o numero de habitantes
+    unsigned long int populacao2;              // numero inteiro para armazenar o numero de habitantes
     float area2;                 // um numero float (ponto flutuante) para armazenar a área em km2
     float pib2;                  // um numero float (ponto flutuante) para armazenar o PIB 
     int pontosturisticos2;       // um numero inteiro para armazenar a quantidade de pontos turisticos da cidade
@@ -97,7 +97,7 @@ int main() {
     scanf(" %[^\n]", nomecidade1); 
 
     printf("Digite a População (nº de hab): ");
-    scanf("%d", &populacao1);
+    scanf("%lu", &populacao1);
 
     printf("Digite a Área (km²): ");
     scanf("%f", &area1);
@@ -109,20 +109,29 @@ int main() {
     scanf("%d", &pontosturisticos1);
 
     // inserido no nivel AVENTUREIRO
-    densidadedemografica1 = (float) populacao1 / area1; // a densidade é a divisao da população pela area
+    
+    // o código a seguir foi inserido por orientação da tutoria visa evitar erro de divisão por zero  
+    if (area1 != 0) {
+        densidadedemografica1 = (float)populacao1 / area1;} 
+    else            {    
+        densidadedemografica1 = 0.0f; // Ou trate o erro de outra forma
+        printf("Atenção: Área da Carta 1 é zero! Densidade foi atribuida por padrao como 0\n");
+    } 
+
+    // linha original densidadedemografica1 = (float) populacao1 / area1; // a densidade é a divisao da população pela area
     // a renda é a divisao do pib pela populacação. Multipliquei por 1 milhão por ser o indice usado na entrada dos dados (milhoes de Reais).
     // assim o valor apresentado no per capta corresponderá a Reais
     rendapercapta1 = (float) ((pib1 / populacao1) * 1000000);  
   
     // inserido no nivel MESTRE
-    superpoder1 = (populacao1 + area1 + (pib1 * 1000000) + pontosturisticos1 + rendapercapta1) * (1.0f / (densidadedemografica1 * 100));
-    
+    superpoder1 = (float)populacao1 + area1 + (pib1 * 1000000.0f) + pontosturisticos1 + rendapercapta1 + (1.0f / densidadedemografica1);
+
      // Exibição dos dados da Carta 1
     printf("\n\n Dados Informados\n=== Carta 1 ===\n");
     printf("Estado: %c\n", estado1);
     printf("Código: %s\n", codigo1);
     printf("Nome da Cidade: %s\n", nomecidade1);
-    printf("População: %d habitantes\n", populacao1);
+    printf("População: %lu habitantes\n", populacao1);
     printf("Área: %.2f km²\n", area1);
     printf("PIB: %.1f milhões de reais\n", pib1);
     printf("Número de Pontos Turísticos: %d\n", pontosturisticos1);
@@ -146,7 +155,7 @@ int main() {
     scanf(" %[^\n]", nomecidade2); 
 
     printf("Digite a População (nº de hab): ");
-    scanf("%d", &populacao2);
+    scanf("%lu", &populacao2);
 
     printf("Digite a Área (km²): ");
     scanf("%f", &area2);
@@ -158,20 +167,30 @@ int main() {
     scanf("%d", &pontosturisticos2);
 
     // inserido no nivel AVENTUREIRO
-    densidadedemografica2 = (float) populacao2 / area2; // a densidade é a divisao da população pela area
+    
+    // o código a seguir foi inserido por orientação da tutoria visa evitar erro de divisão por zero  
+    if (area2 != 0) {
+        densidadedemografica2 = (float)populacao2 / area2;} 
+    else            {    
+        densidadedemografica2 = 0.0f; // Ou trate o erro de outra forma
+        printf("Atenção: Área da Carta 2 é zero! Densidade foi atribuida por padrao como 0\n");
+    } 
+
+    // linha original  - densidadedemografica2 = (float) populacao2 / area2; // a densidade é a divisao da população pela area
+    
     // a renda é a divisao do pib pela populacação. Multipliquei por 1 milhão por ser o indice usado na entrada dos dados (milhoes de Reais).
     // assim o valor apresentado no per capta corresponderá a Reais
     rendapercapta2 = (float) ((pib2 / populacao2) * 1000000);  
   
     // inserido no nivel MESTRE
-    superpoder2 = (populacao2 + area2 + (pib2 * 1000000) + pontosturisticos2 + rendapercapta2) * (1.0f / (densidadedemografica2 * 100));
-    
+    superpoder2 = (float)populacao2 + area2 + (pib2 * 1000000.0f) + pontosturisticos2 + rendapercapta2 + (1.0f / densidadedemografica2);
+
     // Exibição dos dados da Carta 2
     printf("\n\n Dados Informados\n=== Carta 2 ===\n");
     printf("Estado: %c\n", estado2);
     printf("Código: %s\n", codigo2);
     printf("Nome da Cidade: %s\n", nomecidade2);
-    printf("População: %d habitantes\n", populacao2);
+    printf("População: %lu habitantes\n", populacao2);
     printf("Área: %.2f km²\n", area2);
     printf("PIB: %.1f milhões de reais\n", pib2);
     printf("Número de Pontos Turísticos: %d\n", pontosturisticos2);   
@@ -191,7 +210,7 @@ int main() {
     resultadopib = pib1 > pib2;
     resultadopontosturisticos = pontosturisticos1 > pontosturisticos2;
     resultadopercapta = rendapercapta1 > rendapercapta2;
-    resultadodensidade = densidadedemografica2 > densidadedemografica1;
+    resultadodensidade = densidadedemografica1 < densidadedemografica2;
     resultadosuperpoder = superpoder1 > superpoder2;
 
     printf("\n\n Comparação  ==== (1) -  Carta 1 Vence  - (0) - Carta 2 Vence\n\n");
