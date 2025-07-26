@@ -17,9 +17,6 @@
 /*
   24/07/2025 - (Célio) - foram realizadas as alterações e complementos referente ao modulo MESTRE
              - criada a variavel SUPERPODER baseado na soma de todas os valores numericos menos a Densidade demografica 
-             - apliquei a ideia de abater o valor da densidade na seguinte metodologia:
-               SUPERPODER = soma de tudo * (1 / densidade * 100) de forma a gerar um numero onde a densidade quanto mais alta for
-               mais alto será o desconto no superpoder da cidade.
 
 */
 int main() {
